@@ -6,6 +6,17 @@ use CodeIgniter\Config\BaseConfig;
 
 class App extends BaseConfig
 {
+    public function __construct()
+    {
+        parent::__construct();
+
+        if (! is_cli() && $this->baseURL === 'http://localhost:8080/') {
+            $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+            $scheme = (! empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+            $this->baseURL = $scheme . '://' . $host . '/';
+        }
+    }
+
     /**
      * --------------------------------------------------------------------------
      * Base Site URL

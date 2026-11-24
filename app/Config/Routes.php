@@ -4,11 +4,12 @@ use CodeIgniter\Router\RouteCollection;
 
 /** @var RouteCollection $routes */
 $routes->get('/', 'Home::index');
-$routes->get('/login', 'Home::login');
-$routes->post('/storeOwner/login', 'Home::AuthenticateStoreOwner');
-$routes->post('/storeOwner/register', 'Home::registerStoreOwner');
-$routes->get('/dashboard', 'Home::dashboard');
-$routes->post('/products', 'Home::createProduct');
-$routes->post('/products/(:num)/update', 'Home::updateProduct/$1');
-$routes->post('/products/(:num)/delete', 'Home::deleteProduct/$1');
-$routes->post('/logout', 'Home::logout');
+$routes->get('/login', 'StoreOwnerController::login', ['as' => 'login']);
+$routes->get('/register', 'StoreOwnerController::registerView', ['as' => 'register']);
+$routes->post('/storeOwner/login', 'StoreOwnerController::authenticate');
+$routes->post('/storeOwner/register', 'StoreOwnerController::register');
+$routes->post('/logout', 'StoreOwnerController::logout');
+$routes->get('/dashboard', 'DashboardController::index', ['filter' => 'session']);
+$routes->post('/products', 'ProductController::create', ['filter' => 'session']);
+$routes->post('/products/(:num)/update', 'ProductController::update/$1', ['filter' => 'session']);
+$routes->post('/products/(:num)/delete', 'ProductController::delete/$1', ['filter' => 'session']);

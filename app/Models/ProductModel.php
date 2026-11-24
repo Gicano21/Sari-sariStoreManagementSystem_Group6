@@ -11,6 +11,13 @@ class ProductModel extends Model
     protected $returnType = 'array';
     protected $allowedFields = ['product_name', 'category', 'unit_price', 'stock_quantity'];
 
+    protected $validationRules = [
+        'product_name' => 'required|max_length[255]',
+        'category' => 'required|max_length[255]',
+        'unit_price' => 'required|decimal|greater_than_equal_to[0]',
+        'stock_quantity' => 'required|integer|greater_than_equal_to[0]',
+    ];
+
     public function getProducts(): array
     {
         return $this->orderBy('product_name', 'ASC')->findAll();

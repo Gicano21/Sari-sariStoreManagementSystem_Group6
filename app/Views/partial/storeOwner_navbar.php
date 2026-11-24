@@ -9,6 +9,6 @@
             </form>
         </div>
     <?php else: ?>
-        <a class="button secondary small" href="#owner-access">Owner sign in</a>
+        <a class="button secondary small" href="<?= site_url('login') ?>">Owner access</a>
     <?php endif ?>
 </header>

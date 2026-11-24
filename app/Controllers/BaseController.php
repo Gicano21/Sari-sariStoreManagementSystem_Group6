@@ -11,7 +11,7 @@ use Psr\Log\LoggerInterface;
 
 abstract class BaseController extends Controller
 {
-    protected $helpers = ['form', 'url'];
+    protected $helpers = ['form', 'url', 'auth'];
 
 
     // protected $session;

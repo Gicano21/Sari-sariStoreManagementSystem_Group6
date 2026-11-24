@@ -7,11 +7,7 @@
     <section class="heading">
         <div>
             <h1>Inventory</h1>
-            <p class="subtitle">
-                <?= $isOwnerLoggedIn
-                    ? 'Manage the products and stock in your store.'
-                    : 'Browse the products and stock in the store.' ?>
-            </p>
+            <p class="subtitle">Manage the products and stock in your store.</p>
         </div>
     </section>
 
@@ -31,43 +27,6 @@
                 <?php endforeach ?>
             </ul>
         </div>
-    <?php endif ?>
-
-    <?php if (! $isOwnerLoggedIn): ?>
-        <section class="panel" id="owner-access" aria-labelledby="owner-access-heading">
-            <div class="panel-heading">
-                <div>
-                    <h2 id="owner-access-heading">Store owner access</h2>
-                    <span class="muted">Create an owner account, then sign in to manage products.</span>
-                </div>
-            </div>
-            <div class="access-grid">
-                <form class="access-form" action="<?= site_url('storeOwner/login') ?>" method="post">
-                    <?= csrf_field() ?>
-                    <h2>Sign in</h2>
-                    <label for="login-username">Username</label>
-                    <input id="login-username" name="username" value="<?= esc(old('username')) ?>" autocomplete="username" required>
-                    <label for="login-password">Password</label>
-                    <input id="login-password" name="password" type="password" autocomplete="current-password" required>
-                    <button class="button" type="submit">Sign in</button>
-                </form>
-                <form class="access-form" action="<?= site_url('storeOwner/register') ?>" method="post">
-                    <?= csrf_field() ?>
-                    <h2>Create account</h2>
-                    <label for="register-name">Full name</label>
-                    <input id="register-name" name="name" value="<?= esc(old('name')) ?>" maxlength="255" autocomplete="name" required>
-                    <label for="register-username">Username</label>
-                    <input id="register-username" name="username" value="<?= esc(old('username')) ?>" minlength="3" maxlength="100" autocomplete="username" required>
-                    <label for="register-email">Email</label>
-                    <input id="register-email" name="email" type="email" value="<?= esc(old('email')) ?>" maxlength="255" autocomplete="email" required>
-                    <label for="register-password">Password (at least 8 characters)</label>
-                    <input id="register-password" name="password" type="password" minlength="8" maxlength="255" autocomplete="new-password" required>
-                    <label for="register-password-confirm">Confirm password</label>
-                    <input id="register-password-confirm" name="password_confirm" type="password" minlength="8" maxlength="255" autocomplete="new-password" required>
-                    <button class="button" type="submit">Create account</button>
-                </form>
-            </div>
-        </section>
     <?php endif ?>
 
     <section class="stats" aria-label="Inventory summary">
